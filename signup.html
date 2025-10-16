@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desert Storm Signup Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label, select, input { margin: 5px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <h2>🪖 Desert Storm Signup Tracker</h2>
+  <form id="signupForm">
+    <label for="playerName">Player Name:</label>
+    <input type="text" id="playerName" required>
+
+    <label for="taskForce">Task Force:</label>
+    <select id="taskForce" required>
+      <option value="A">A</option>
+      <option value="B">B</option>
+    </select>
+
+    <label for="battleTime">Battle Time:</label>
+    <select id="battleTime" required>
+      <option value="2pm">2:00 PM</option>
+      <option value="8pm">8:00 PM</option>
+    </select>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <table id="signupTable">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Player</th>
+        <th>Task Force</th>
+        <th>Battle Time</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const tableBody = document.querySelector('#signupTable tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('playerName').value.trim();
+      const force = document.getElementById('taskForce').value;
+      const time = document.getElementById('battleTime').value;
+      const timestamp = new Date().toLocaleString();
+
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${timestamp}</td><td>${name}</td><td>${force}</td><td>${time}</td>`;
+      tableBody.appendChild(row);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
